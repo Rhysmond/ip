@@ -56,11 +56,54 @@ public class NyanChan {
                 }
             }
 
+            // todo: Add todo task
+            else if (user_input.startsWith("todo ")) {
+                String description = user_input.substring(5).trim();
+                Task task = new Todo(description);
+                task_list.add(task);
+                System.out.print(line_break + "Nyan! I've added this task:\n " + task + "\nNyow you have "
+                + task_list.size() + " tasks in the list.\n" + line_break);
+            }
+
+            // deadline: Add a deadline task
+            else if (user_input.startsWith("deadline ")) {
+                try {
+                    String[] parts = user_input.substring(9).split("/by", 2);
+                    String description = parts[0].trim();
+                    String by = parts[1].trim();
+                    Task task = new Deadline(description, by);
+                    task_list.add(task);
+                    System.out.print(line_break + "Nyan! I've added this task:\n " + task + "\nNyow you have "
+                    + task_list.size() + " tasks in the list.\n" + line_break);
+                } catch (Exception e) {
+                    System.out.print(line_break + "Hiss! Deadline format should be: deadline <desc> /by <time>\n"
+                    + line_break);
+                }
+            }
+
+            else if (user_input.startsWith("event ")) {
+                try {
+                    String[] parts = user_input.substring(6).split("/from", 2);
+                    String description = parts[0].trim();
+                    String[] time_parts = parts[1].split("/to", 2);
+                    String from = time_parts[0].trim();
+                    String to = time_parts[1].trim();
+                    Task task = new Event(description, from, to);
+                    task_list.add(task);
+                    System.out.print(line_break + "Nyan! I've added this task:\n " + task + "\nNyow you have "
+                            + task_list.size() + " tasks in the list.\n" + line_break);
+                } catch (Exception e) {
+                    System.out.print(line_break + "Hiss! Event format should be: event <desc> /from <start> /to <end>\n"
+                    + line_break);
+                }
+            }
+
             // anything else: Add tasks
             else {
                 Task task = new Task(user_input);
                 task_list.add(task);
-                System.out.print(line_break + "added: " + task.description + "\n" + line_break);
+                System.out.print(line_break + "Nyan! I've added this task:\n " + task + "\nNyow you have "
+                        + task_list.size() + " tasks in the list.\n" + line_break);
             }
         }
         scanner.close();
