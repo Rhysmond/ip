@@ -7,29 +7,62 @@ public class NyanChan {
         String line_break = "____________________________________________________________\n";
         Scanner scanner = new Scanner(System.in);
 
-        List<String> task_list = new ArrayList<>();
+        List<Task> task_list = new ArrayList<>();
 
-        System.out.println(line_break + " Hello! I'm NyanChan!\n What can I do for you?\n" + line_break);
+        System.out.println(line_break + "Hello! I'm NyanChan!\nWhat can I do for you?\n" + line_break);
 
         while (true) {
             String user_input = scanner.nextLine();
+            // bye: Goodbye message
             if (user_input.equals("bye")) {
-                System.out.print(line_break + " Bye. Hope to see you again soon!\n" + line_break);
+                System.out.print(line_break + "Bye. Hope to see you again soon!\n" + line_break);
                 break;
-            } else if (user_input.equals("list")) {
+            }
+
+            // list: Listing out tasks
+            else if (user_input.equals("list")) {
                 if (task_list.isEmpty()) {
-                    System.out.print(line_break + " Nothing stored yet!\n" + line_break);
+                    System.out.print(line_break + "Nothing stored yet!\n" + line_break);
                 } else {
                     System.out.print(line_break);
                     for (int i = 0; i < task_list.size(); i++) {
-                        System.out.println(" " + (i + 1) + ". " + task_list.get(i));
+                        System.out.println((i + 1) + "." + task_list.get(i));
                     }
                     System.out.print(line_break);
                 }
-            } else {
-                task_list.add(user_input);
-                System.out.print(line_break + " added: " + user_input + "\n" + line_break);
+            }
+
+            // mark: Mark tasks
+            else if (user_input.startsWith("mark ")) {
+                try {
+                    int task_index = Integer.parseInt(user_input.split(" ")[1]) - 1;
+                    Task t = task_list.get(task_index);
+                    t.markAsDone();
+                    System.out.print(line_break + "Nice! I've marked this task as done:\n  " + t + "\n" + line_break);
+                } catch (Exception e) {
+                    System.out.print(line_break + "Oops! Invalid task number.\n" + line_break);
+                }
+            }
+
+            // unmark: Unmark tasks
+            else if (user_input.startsWith("unmark ")) {
+                try {
+                    int task_index = Integer.parseInt(user_input.split(" ")[1]) - 1;
+                    Task t = task_list.get(task_index);
+                    t.markAsNotDone();
+                    System.out.print(line_break + "OK, I've marked this task as not done yet:\n  " + t + "\n" + line_break);
+                } catch (Exception e) {
+                    System.out.print(line_break + "Oops! Invalid task number.\n" + line_break);
+                }
+            }
+
+            // anything else: Add tasks
+            else {
+                Task task = new Task(user_input);
+                task_list.add(task);
+                System.out.print(line_break + "added: " + task.description + "\n" + line_break);
             }
         }
+        scanner.close();
     }
 }
