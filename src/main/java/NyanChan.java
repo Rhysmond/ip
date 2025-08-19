@@ -40,7 +40,7 @@ public class NyanChan {
                     }
                     Task t = task_list.get(task_index);
                     t.markAsDone();
-                    System.out.println(line_break + "Nyan! I've marked this task as done:\n  " + t + "\n" + line_break);
+                    System.out.println(line_break + "Meow, I've marked this task as done:\n  " + t + "\n" + line_break);
                 }
 
                 // UNMARK
@@ -52,6 +52,18 @@ public class NyanChan {
                     Task t = task_list.get(task_index);
                     t.markAsNotDone();
                     System.out.println(line_break + "Meow, I've marked this task as not done yet:\n  " + t + "\n" + line_break);
+                }
+
+                // DELETE
+                else if (user_input.startsWith("delete ")) {
+                    int task_index = Integer.parseInt(user_input.split(" ")[1]) - 1;
+                    if (task_index < 0 || task_index >= task_list.size()) {
+                        throw new NyanException("HISS! Invalid task number to delete.");
+                    }
+                    Task t = task_list.get(task_index);
+                    task_list.remove(task_index);
+                    System.out.println(line_break + "Meow, I've removed this task:\n  " + t + "\n"+ "Nyow you have "
+                    + task_list.size() + " tasks in the list.\n" + line_break);
                 }
 
                 // TODO
