@@ -9,13 +9,13 @@ public class NyanChan {
 
         List<Task> task_list = new ArrayList<>();
 
-        System.out.println(line_break + "Hello! I'm NyanChan!\nWhat can I do for you?\n" + line_break);
+        System.out.println(line_break + "MEOW! I'm NyanChan!\nWhat can I do for you?\n" + line_break);
 
         while (true) {
             String user_input = scanner.nextLine();
             // bye: Goodbye message
             if (user_input.equals("bye")) {
-                System.out.print(line_break + "Bye. Hope to see you again soon!\n" + line_break);
+                System.out.print(line_break + "Purr... Hope to see you again!\n" + line_break);
                 break;
             }
 
@@ -38,9 +38,9 @@ public class NyanChan {
                     int task_index = Integer.parseInt(user_input.split(" ")[1]) - 1;
                     Task t = task_list.get(task_index);
                     t.markAsDone();
-                    System.out.print(line_break + "Nice! I've marked this task as done:\n  " + t + "\n" + line_break);
+                    System.out.print(line_break + "Nyan! I've marked this task as done:\n  " + t + "\n" + line_break);
                 } catch (Exception e) {
-                    System.out.print(line_break + "Oops! Invalid task number.\n" + line_break);
+                    System.out.print(line_break + "Hiss! Invalid task number.\n" + line_break);
                 }
             }
 
@@ -50,9 +50,9 @@ public class NyanChan {
                     int task_index = Integer.parseInt(user_input.split(" ")[1]) - 1;
                     Task t = task_list.get(task_index);
                     t.markAsNotDone();
-                    System.out.print(line_break + "OK, I've marked this task as not done yet:\n  " + t + "\n" + line_break);
+                    System.out.print(line_break + "Meow, I've marked this task as not done yet:\n  " + t + "\n" + line_break);
                 } catch (Exception e) {
-                    System.out.print(line_break + "Oops! Invalid task number.\n" + line_break);
+                    System.out.print(line_break + "Hiss! Invalid task number.\n" + line_break);
                 }
             }
 
