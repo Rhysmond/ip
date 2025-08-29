@@ -1,3 +1,9 @@
+package app;
+
+import exceptions.NyanException;
+import tasks.*;
+
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -7,8 +13,13 @@ public class NyanChan {
         String line_break = "____________________________________________________________\n";
         Scanner scanner = new Scanner(System.in);
         List<Task> task_list = new ArrayList<>();
+        try {
+            Save.read(task_list);
+        } catch (FileNotFoundException e) {
+            System.out.println("HISS! File not found.");
+        }
 
-        System.out.println(line_break + "MEOW! I'm NyanChan!\nWhat can I do for you?\n" + line_break);
+        System.out.println(line_break + "MEOW! I'm app.NyanChan!\nWhat can I do for you?\n" + line_break);
 
         while (true) {
             String user_input = scanner.nextLine().trim();
@@ -40,6 +51,7 @@ public class NyanChan {
                     }
                     Task t = task_list.get(task_index);
                     t.markAsDone();
+                    Save.write(task_list);
                     System.out.println(line_break + "Meow, I've marked this task as done:\n  " + t + "\n" + line_break);
                 }
 
@@ -51,6 +63,7 @@ public class NyanChan {
                     }
                     Task t = task_list.get(task_index);
                     t.markAsNotDone();
+                    Save.write(task_list);
                     System.out.println(line_break + "Meow, I've marked this task as not done yet:\n  " + t + "\n" + line_break);
                 }
 
@@ -62,6 +75,7 @@ public class NyanChan {
                     }
                     Task t = task_list.get(task_index);
                     task_list.remove(task_index);
+                    Save.write(task_list);
                     System.out.println(line_break + "Meow, I've removed this task:\n  " + t + "\n"+ "Nyow you have "
                     + task_list.size() + " tasks in the list.\n" + line_break);
                 }
@@ -74,6 +88,7 @@ public class NyanChan {
                     }
                     Task task = new Todo(description);
                     task_list.add(task);
+                    Save.write(task_list);
                     System.out.println(line_break + "Nyan! I've added this task:\n  " + task + "\nNow you have "
                             + task_list.size() + " tasks in the list.\n" + line_break);
                 }
@@ -82,12 +97,13 @@ public class NyanChan {
                 else if (user_input.startsWith("deadline")) {
                     String[] parts = user_input.substring(9).split("/by", 2);
                     if (parts.length < 2 || parts[0].trim().isEmpty() || parts[1].trim().isEmpty()) {
-                        throw new NyanException("HISS! Deadline format should be: deadline <desc> /by <time>");
+                        throw new NyanException("HISS! tasks.Deadline format should be: deadline <desc> /by <time>");
                     }
                     String description = parts[0].trim();
                     String by = parts[1].trim();
                     Task task = new Deadline(description, by);
                     task_list.add(task);
+                    Save.write(task_list);
                     System.out.println(line_break + "Nyan! I've added this task:\n  " + task + "\nNow you have "
                             + task_list.size() + " tasks in the list.\n" + line_break);
                 }
@@ -96,17 +112,18 @@ public class NyanChan {
                 else if (user_input.startsWith("event")) {
                     String[] parts = user_input.substring(6).split("/from", 2);
                     if (parts.length < 2 || parts[0].trim().isEmpty()) {
-                        throw new NyanException("HISS! Event format should be: event <desc> /from <start> /to <end>");
+                        throw new NyanException("HISS! tasks.Event format should be: event <desc> /from <start> /to <end>");
                     }
                     String description = parts[0].trim();
                     String[] time_parts = parts[1].split("/to", 2);
                     if (time_parts.length < 2 || time_parts[0].trim().isEmpty() || time_parts[1].trim().isEmpty()) {
-                        throw new NyanException("HISS! Event format should be: event <desc> /from <start> /to <end>");
+                        throw new NyanException("HISS! tasks.Event format should be: event <desc> /from <start> /to <end>");
                     }
                     String from = time_parts[0].trim();
                     String to = time_parts[1].trim();
                     Task task = new Event(description, from, to);
                     task_list.add(task);
+                    Save.write(task_list);
                     System.out.println(line_break + "Nyan! I've added this task:\n  " + task + "\nNow you have "
                             + task_list.size() + " tasks in the list.\n" + line_break);
                 }
@@ -119,7 +136,7 @@ public class NyanChan {
             } catch (NyanException e) {
                 System.out.println(line_break + e.getMessage() + "\n" + line_break);
             } catch (NumberFormatException e) {
-                System.out.println(line_break + "HISS! Task number should be an integer.\n" + line_break);
+                System.out.println(line_break + "HISS! tasks.Task number should be an integer.\n" + line_break);
             } catch (Exception e) {
                 System.out.println(line_break + "HISS! Something went wrong: " + e.getMessage() + "\n" + line_break);
             }
