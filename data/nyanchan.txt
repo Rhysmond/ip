@@ -1,0 +1,3 @@
+T | 1 | lol
+D | 0 | dasf | asldkfj
+E | 0 | a | 1 | 2

@@ -1,3 +1,5 @@
+package tasks;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -17,6 +19,14 @@ public class Task {
 
     public void markAsNotDone() {
         this.isDone = false;
+    }
+
+    public boolean getDone() {
+        return this.isDone;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     @Override
