@@ -1,6 +1,8 @@
 package app;
 
 import exceptions.NyanException;
+import exceptions.IncorrectFormatException;
+
 import tasks.*;
 
 import java.io.FileNotFoundException;
@@ -101,11 +103,15 @@ public class NyanChan {
                     }
                     String description = parts[0].trim();
                     String by = parts[1].trim();
-                    Task task = new Deadline(description, by);
-                    task_list.add(task);
-                    Save.write(task_list);
-                    System.out.println(line_break + "Nyan! I've added this task:\n  " + task + "\nNow you have "
-                            + task_list.size() + " tasks in the list.\n" + line_break);
+                    try {
+                        Task task = new Deadline(description, by);
+                        task_list.add(task);
+                        Save.write(task_list);
+                        System.out.println(line_break + "Nyan! I've added this task:\n  " + task + "\nNow you have "
+                                + task_list.size() + " tasks in the list.\n" + line_break);
+                    } catch (IncorrectFormatException e) {
+                        System.out.println(line_break + "HISS! Invalid date/time format. Use dd/MM/yyyy HH:mm\n" + line_break);
+                    }
                 }
 
                 // EVENT
@@ -121,11 +127,15 @@ public class NyanChan {
                     }
                     String from = time_parts[0].trim();
                     String to = time_parts[1].trim();
-                    Task task = new Event(description, from, to);
-                    task_list.add(task);
-                    Save.write(task_list);
-                    System.out.println(line_break + "Nyan! I've added this task:\n  " + task + "\nNow you have "
-                            + task_list.size() + " tasks in the list.\n" + line_break);
+                    try {
+                        Task task = new Event(description, from, to);
+                        task_list.add(task);
+                        Save.write(task_list);
+                        System.out.println(line_break + "Nyan! I've added this task:\n  " + task + "\nNow you have "
+                                + task_list.size() + " tasks in the list.\n" + line_break);
+                    } catch (IncorrectFormatException e) {
+                        System.out.println(line_break + "HISS! Invalid date/time format for event. Use dd/MM/yyyy\n" + line_break);
+                    }
                 }
 
                 // UNKNOWN COMMAND

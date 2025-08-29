@@ -78,9 +78,9 @@ public class Save {
         if (t instanceof Todo) {
             return "T | " + done + " | " + t.getDescription();
         } else if (t instanceof Deadline d) {
-            return "D | " + done + " | " + d.getDescription() + " | " + d.getBy();
+            return "D | " + done + " | " + d.getDescription() + " | " + d.getDeadline().format(Deadline.INPUT_FORMAT);
         } else if (t instanceof Event e) {
-            return "E | " + done + " | " + e.getDescription() + " | " + e.getFrom() + " | " + e.getTo();
+            return "E | " + done + " | " + e.getDescription() + " | " + e.getStartDate() + " | " + e.getEndDate();
         } else {
             throw new IncorrectFormatException();
         }
