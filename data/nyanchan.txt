@@ -1,6 +1,8 @@
 D | 1 | asdaflkj | 23/01/2003
 T | 1 | asldkfj
-T | 0 | 6
-E | 1 | yenjoo | 23/01/2003 | 23/01/2003
+E | 0 | yenjoo | 23/01/2003 | 23/01/2003
 T | 1 | 1
-D | 0 | asdlfkj | 23/01/2003
+D | 1 | asdlfkj | 23/01/2003
+T | 0 | lsakdjfl
+D | 0 | asldkfj | 23/01/2003
+E | 0 | asldkfj | 23/01/2003 | 23/10/2003
