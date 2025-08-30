@@ -35,6 +35,7 @@ public class Parser {
 
     // ---------------- Helper Methods ---------------- //
 
+    // parses index such that index will refer to one less
     private static int parseIndex(String input, TaskList taskList) throws NyanException {
         try {
             int index = Integer.parseInt(input.split(" ")[1]) - 1;
@@ -45,6 +46,7 @@ public class Parser {
         }
     }
 
+    // handles both mark and unmark
     private static void handleMark(String input, TaskList taskList, Ui ui, Storage storage, boolean mark)
             throws NyanException {
         int index = parseIndex(input, taskList);
@@ -56,6 +58,7 @@ public class Parser {
         else ui.showUnmarkTask(task);
     }
 
+    // handles delete command
     private static void handleDelete(String input, TaskList taskList, Ui ui, Storage storage)
             throws NyanException {
         int index = parseIndex(input, taskList);
@@ -64,6 +67,7 @@ public class Parser {
         ui.showDeleteTask(taskList, task);
     }
 
+    // handles todos added
     private static void handleTodo(String input, TaskList taskList, Ui ui, Storage storage) throws NyanException {
         String description = input.length() > 5 ? input.substring(5).trim() : "";
         if (description.isEmpty()) throw new NyanException("The description of a todo cannot be empty.");
@@ -73,6 +77,7 @@ public class Parser {
         ui.showAddTask(taskList, task);
     }
 
+    // handles deadline added
     private static void handleDeadline(String input, TaskList taskList, Ui ui, Storage storage) throws NyanException {
         String[] parts = input.substring(9).split("/by", 2);
         if (parts.length < 2 || parts[0].trim().isEmpty() || parts[1].trim().isEmpty())
@@ -87,6 +92,7 @@ public class Parser {
         }
     }
 
+    // handles events added
     private static void handleEvent(String input, TaskList taskList, Ui ui, Storage storage) throws NyanException {
         String[] parts = input.substring(6).split("/from", 2);
         if (parts.length < 2 || parts[0].trim().isEmpty())
