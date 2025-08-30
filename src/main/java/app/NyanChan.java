@@ -14,23 +14,33 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class NyanChan {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Ui ui = new Ui();
-        Storage storage = new Storage("./data/nyanchan.txt");
-        TaskList taskList = new TaskList();
+    private Storage storage;
+    private TaskList taskList;
+    private Ui ui;
 
+    public NyanChan(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
         try {
             taskList = new TaskList(storage.load());
         } catch (NyanException e) {
             ui.showError(e.getMessage());
+            taskList = new TaskList();
         }
+    }
 
+    public void run() {
         ui.showWelcome();
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            String userInput = scanner.nextLine();
+            String userInput = scanner.nextLine().trim();
+
             try {
+                if (userInput.equals("bye")) {
+                    ui.showGoodbye();
+                    break;
+                }
                 Parser.handleCommand(userInput, taskList, ui, storage);
             } catch (NyanException e) {
                 ui.showError(e.getMessage() + "\n");
@@ -38,5 +48,11 @@ public class NyanChan {
                 ui.showError("Something went wrong: " + e.getMessage() + "\n");
             }
         }
+
+        scanner.close();
+    }
+
+    public static void main(String[] args) {
+        new NyanChan("./data/nyanchan.txt").run();
     }
 }
