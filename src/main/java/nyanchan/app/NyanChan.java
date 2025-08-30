@@ -4,7 +4,6 @@ import nyanchan.exceptions.NyanException;
 
 import java.util.Scanner;
 
-// for branch-Level-8
 public class NyanChan {
     private Storage storage;
     private TaskList taskList;
