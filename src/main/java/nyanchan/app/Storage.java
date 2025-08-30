@@ -14,7 +14,7 @@ public class Storage {
         this.filepath = filepath;
     }
 
-    // Loads nyanchan.tasks from file into memory
+    // Loads tasks from file into memory
     public List<Task> load() throws NyanException {
         List<Task> tasks = new ArrayList<>();
         try {
@@ -22,17 +22,17 @@ public class Storage {
         } catch (FileNotFoundException e) {
             throw new NyanException("Could not find save file at: " + filepath);
         } catch (Exception e) {
-            throw new NyanException("Error while loading nyanchan.tasks.");
+            throw new NyanException("Error while loading tasks.");
         }
         return tasks;
     }
 
-    // Saves the given nyanchan.tasks to the file
+    // Saves the given tasks to the file
     public void save(List<Task> tasks) throws NyanException {
         try {
             Save.write(tasks);
         } catch (Exception e) {
-            throw new NyanException("Error while saving nyanchan.tasks.");
+            throw new NyanException("Error while saving tasks.");
         }
     }
 }
