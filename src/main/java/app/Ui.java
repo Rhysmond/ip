@@ -34,7 +34,7 @@ public class Ui {
     }
 
     // Show task list
-    public void showTaskList(List<Task> tasks) {
+    public void showTaskList(TaskList tasks) {
         if (tasks.isEmpty()) {
             showLine();
             System.out.println("Nothing stored yet!\n");
@@ -68,7 +68,7 @@ public class Ui {
     }
 
     // Show delete task
-    public void showDeleteTask(List<Task> tasks, Task t) {
+    public void showDeleteTask(TaskList tasks, Task t) {
         showLine();
         System.out.println("Meow, I've removed this task:\n  " + t + "\n"+ "Nyow you have "
                 + tasks.size() + " tasks in the list.\n");
@@ -76,7 +76,7 @@ public class Ui {
     }
 
     // Show todo
-    public void showAddTask(List<Task> tasks, Task t) {
+    public void showAddTask(TaskList tasks, Task t) {
         showLine();
         System.out.println("Nyan! I've added this task:\n  " + t + "\nNow you have "
                 + tasks.size() + " tasks in the list.\n");

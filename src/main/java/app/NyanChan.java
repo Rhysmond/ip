@@ -15,10 +15,10 @@ public class NyanChan {
         Scanner scanner = new Scanner(System.in);
         Ui ui = new Ui();
         Storage storage = new Storage("./data/nyanchan.txt");
-        List<Task> task_list = new ArrayList<>();
+        TaskList taskList = new TaskList();
 
         try {
-            task_list = storage.load();
+            taskList = new TaskList(storage.load());
         } catch (NyanException e) {
             ui.showError(e.getMessage());
         }
@@ -36,43 +36,43 @@ public class NyanChan {
 
                 // LIST
                 else if (user_input.equals("list")) {
-                    ui.showTaskList(task_list);
+                    ui.showTaskList(taskList);
                 }
 
                 // MARK
                 else if (user_input.startsWith("mark ")) {
                     int task_index = Integer.parseInt(user_input.split(" ")[1]) - 1;
-                    if (task_index < 0 || task_index >= task_list.size()) {
+                    if (task_index < 0 || task_index >= taskList.size()) {
                         throw new NyanException("Invalid task number to mark.");
                     }
-                    Task t = task_list.get(task_index);
+                    Task t = taskList.get(task_index);
                     t.markAsDone();
-                    storage.save(task_list);
+                    storage.save(taskList.getAll());
                     ui.showMarkTask(t);
                 }
 
                 // UNMARK
                 else if (user_input.startsWith("unmark ")) {
                     int task_index = Integer.parseInt(user_input.split(" ")[1]) - 1;
-                    if (task_index < 0 || task_index >= task_list.size()) {
+                    if (task_index < 0 || task_index >= taskList.size()) {
                         throw new NyanException("Invalid task number to unmark.");
                     }
-                    Task t = task_list.get(task_index);
+                    Task t = taskList.get(task_index);
                     t.markAsNotDone();
-                    storage.save(task_list);
+                    storage.save(taskList.getAll());
                     ui.showUnmarkTask(t);
                 }
 
                 // DELETE
                 else if (user_input.startsWith("delete ")) {
                     int task_index = Integer.parseInt(user_input.split(" ")[1]) - 1;
-                    if (task_index < 0 || task_index >= task_list.size()) {
+                    if (task_index < 0 || task_index >= taskList.size()) {
                         throw new NyanException("Invalid task number to delete.");
                     }
-                    Task t = task_list.get(task_index);
-                    task_list.remove(task_index);
-                    storage.save(task_list);
-                    ui.showDeleteTask(task_list, t);
+                    Task t = taskList.get(task_index);
+                    taskList.delete(task_index);
+                    storage.save(taskList.getAll());
+                    ui.showDeleteTask(taskList, t);
                 }
 
                 // TODO
@@ -82,9 +82,9 @@ public class NyanChan {
                         throw new NyanException("The description of a todo cannot be empty.");
                     }
                     Task task = new Todo(description);
-                    task_list.add(task);
-                    storage.save(task_list);
-                    ui.showAddTask(task_list, task);
+                    taskList.add(task);
+                    storage.save(taskList.getAll());
+                    ui.showAddTask(taskList, task);
                 }
 
                 // DEADLINE
@@ -97,9 +97,9 @@ public class NyanChan {
                     String by = parts[1].trim();
                     try {
                         Task task = new Deadline(description, by);
-                        task_list.add(task);
-                        storage.save(task_list);
-                        ui.showAddTask(task_list, task);
+                        taskList.add(task);
+                        storage.save(taskList.getAll());
+                        ui.showAddTask(taskList, task);
                     } catch (IncorrectFormatException e) {
                         ui.showError("Invalid date/time format. Use dd/MM/yyyy.\n");
                     }
@@ -120,9 +120,9 @@ public class NyanChan {
                     String to = time_parts[1].trim();
                     try {
                         Task task = new Event(description, from, to);
-                        task_list.add(task);
-                        storage.save(task_list);
-                        ui.showAddTask(task_list, task);
+                        taskList.add(task);
+                        storage.save(taskList.getAll());
+                        ui.showAddTask(taskList, task);
                     } catch (IncorrectFormatException e) {
                         ui.showError("Invalid date/time format for event. Use dd/MM/yyyy.\n");
                     }

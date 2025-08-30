@@ -80,7 +80,8 @@ public class Save {
         } else if (t instanceof Deadline d) {
             return "D | " + done + " | " + d.getDescription() + " | " + d.getDeadline().format(Deadline.INPUT_FORMAT);
         } else if (t instanceof Event e) {
-            return "E | " + done + " | " + e.getDescription() + " | " + e.getStartDate() + " | " + e.getEndDate();
+            return "E | " + done + " | " + e.getDescription() + " | " + e.getStartDate().format(Event.INPUT_FORMAT)
+                    + " | " + e.getEndDate().format(Event.INPUT_FORMAT);
         } else {
             throw new IncorrectFormatException();
         }
