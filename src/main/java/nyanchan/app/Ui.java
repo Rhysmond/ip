@@ -1,8 +1,7 @@
-package app;
+package nyanchan.app;
 
-import tasks.Task;
+import nyanchan.tasks.Task;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Ui {
@@ -11,7 +10,7 @@ public class Ui {
     // Prints welcome message to user.
     public void showWelcome() {
         System.out.println("____________________________________________________________");
-        System.out.println("MEOW! I'm app.NyanChan!");
+        System.out.println("MEOW! I'm NyanChan!");
         System.out.println("What can I do for you?");
         System.out.println("____________________________________________________________");
     }

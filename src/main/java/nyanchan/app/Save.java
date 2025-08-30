@@ -1,18 +1,16 @@
-package app;
+package nyanchan.app;
 
-import exceptions.NyanException;
-import exceptions.IncorrectFormatException;
+import nyanchan.exceptions.IncorrectFormatException;
 
-import tasks.Task;
-import tasks.Todo;
-import tasks.Event;
-import tasks.Deadline;
+import nyanchan.tasks.Task;
+import nyanchan.tasks.Todo;
+import nyanchan.tasks.Event;
+import nyanchan.tasks.Deadline;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -50,7 +48,7 @@ public class Save {
         }
     }
 
-    // Write into nyanchan.txt and save the tasks from task_list
+    // Write into nyanchan.txt and save the nyanchan.tasks from task_list
     public static void write(List<Task> from) {
         File file = new File(Save.FILE_PATH);
         File parentDir = file.getParentFile();

@@ -1,12 +1,12 @@
 ____________________________________________________________
-MEOW! I'm app.NyanChan!
+MEOW! I'm nyanchan.app.NyanChan!
 What can I do for you?
 ____________________________________________________________
 
 ____________________________________________________________
 Nyan! I've added this task:
   [T][ ] read book
-Now you have 1 tasks in the list.
+Now you have 1 nyanchan.tasks in the list.
 ____________________________________________________________
 
 ____________________________________________________________
@@ -16,25 +16,25 @@ ____________________________________________________________
 ____________________________________________________________
 Nyan! I've added this task:
   [D][ ] submit report (by: Friday)
-Now you have 2 tasks in the list.
+Now you have 2 nyanchan.tasks in the list.
 ____________________________________________________________
 
 ____________________________________________________________
-HISS! tasks.Deadline format should be: deadline <desc> /by <time>
+HISS! nyanchan.tasks.Deadline format should be: deadline <desc> /by <time>
 ____________________________________________________________
 
 ____________________________________________________________
 Nyan! I've added this task:
   [E][ ] team meeting (from: Mon 2pm to: 4pm)
-Now you have 3 tasks in the list.
+Now you have 3 nyanchan.tasks in the list.
 ____________________________________________________________
 
 ____________________________________________________________
-HISS! tasks.Event format should be: event <desc> /from <start> /to <end>
+HISS! nyanchan.tasks.Event format should be: event <desc> /from <start> /to <end>
 ____________________________________________________________
 
 ____________________________________________________________
-Here are the tasks in your list:
+Here are the nyanchan.tasks in your list:
  1.[T][ ] read book
  2.[D][ ] submit report (by: Friday)
  3.[E][ ] team meeting (from: Mon 2pm to: 4pm)

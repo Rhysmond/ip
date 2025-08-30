@@ -1,4 +1,4 @@
-package tasks;
+package nyanchan.tasks;
 
 public class Task {
     private String description;

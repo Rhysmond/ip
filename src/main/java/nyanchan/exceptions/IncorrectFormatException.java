@@ -1,4 +1,4 @@
-package exceptions;
+package nyanchan.exceptions;
 
 public class IncorrectFormatException extends NyanException {
     private static String message = "Hiss! WAKARANAI.";

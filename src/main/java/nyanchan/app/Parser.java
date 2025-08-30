@@ -1,12 +1,12 @@
-package app;
+package nyanchan.app;
 
-import exceptions.NyanException;
-import exceptions.IncorrectFormatException;
+import nyanchan.exceptions.NyanException;
+import nyanchan.exceptions.IncorrectFormatException;
 
-import tasks.Task;
-import tasks.Deadline;
-import tasks.Todo;
-import tasks.Event;
+import nyanchan.tasks.Task;
+import nyanchan.tasks.Deadline;
+import nyanchan.tasks.Todo;
+import nyanchan.tasks.Event;
 
 public class Parser {
 

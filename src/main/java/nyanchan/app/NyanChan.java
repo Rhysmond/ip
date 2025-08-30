@@ -1,17 +1,8 @@
-package app;
+package nyanchan.app;
 
-import exceptions.NyanException;
-import exceptions.IncorrectFormatException;
+import nyanchan.exceptions.NyanException;
 
-import tasks.Task;
-import tasks.Deadline;
-import tasks.Todo;
-import tasks.Event;
-
-import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
 
 // for branch-Level-8
 public class NyanChan {

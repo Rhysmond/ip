@@ -1,6 +1,6 @@
-package app;
+package nyanchan.app;
 
-import tasks.Task;
+import nyanchan.tasks.Task;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,9 @@
-package app;
+package nyanchan.app;
 
-import exceptions.NyanException;
-import exceptions.IncorrectFormatException;
-import tasks.Task;
+import nyanchan.exceptions.NyanException;
+import nyanchan.tasks.Task;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +14,7 @@ public class Storage {
         this.filepath = filepath;
     }
 
-    // Loads tasks from file into memory
+    // Loads nyanchan.tasks from file into memory
     public List<Task> load() throws NyanException {
         List<Task> tasks = new ArrayList<>();
         try {
@@ -24,17 +22,17 @@ public class Storage {
         } catch (FileNotFoundException e) {
             throw new NyanException("Could not find save file at: " + filepath);
         } catch (Exception e) {
-            throw new NyanException("Error while loading tasks.");
+            throw new NyanException("Error while loading nyanchan.tasks.");
         }
         return tasks;
     }
 
-    // Saves the given tasks to the file
+    // Saves the given nyanchan.tasks to the file
     public void save(List<Task> tasks) throws NyanException {
         try {
             Save.write(tasks);
         } catch (Exception e) {
-            throw new NyanException("Error while saving tasks.");
+            throw new NyanException("Error while saving nyanchan.tasks.");
         }
     }
 }
