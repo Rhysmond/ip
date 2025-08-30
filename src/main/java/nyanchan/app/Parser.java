@@ -29,6 +29,7 @@ public class Parser {
             case "todo" -> handleTodo(input, taskList, ui, storage);
             case "deadline" -> handleDeadline(input, taskList, ui, storage);
             case "event" -> handleEvent(input, taskList, ui, storage);
+            case "find" -> handleFind(input, taskList, ui);
             default -> throw new NyanException("I don't recognize that command.");
         }
     }
@@ -109,5 +110,20 @@ public class Parser {
         } catch (IncorrectFormatException e) {
             ui.showError("Invalid date/time format for event. Use dd/MM/yyyy.\n");
         }
+    }
+
+    private static void handleFind(String input, TaskList taskList, Ui ui) throws NyanException {
+        String keyword = input.length() > 5 ? input.substring(5).trim() : "";
+        if (keyword.isEmpty()) throw new NyanException("Please provide a keyword to search.");
+
+        TaskList matchedTasks = new TaskList();
+
+        for (Task task : taskList.getAll()) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                matchedTasks.add(task);
+            }
+        }
+
+        ui.showFindResults(matchedTasks, keyword);
     }
 }

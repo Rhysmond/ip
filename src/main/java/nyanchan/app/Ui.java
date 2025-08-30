@@ -52,6 +52,20 @@ public class Ui {
         }
     }
 
+    // Show results for the find command
+    public void showFindResults(TaskList matchedTasks, String keyword) {
+        showLine();
+        if (matchedTasks.isEmpty()) {
+            System.out.println("No matching tasks found for: " + keyword);
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 0; i < matchedTasks.size(); i++) {
+                System.out.println(" " + (i + 1) + "." + matchedTasks.get(i));
+            }
+        }
+        showLine();
+    }
+
     // Show mark task
     public void showMarkTask(Task t) {
         showLine();
