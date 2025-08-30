@@ -1,2 +1,2 @@
-D | 0 | asdaflkj | 23/01/2003
-E | 0 | yenjoo | 2003-01-23 | 2003-01-23
+D | 1 | asdaflkj | 23/01/2003
+T | 0 | asldkfj

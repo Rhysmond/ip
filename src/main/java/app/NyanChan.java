@@ -14,12 +14,13 @@ public class NyanChan {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Ui ui = new Ui();
+        Storage storage = new Storage("./data/nyanchan.txt");
         List<Task> task_list = new ArrayList<>();
 
         try {
-            Save.read(task_list);
-        } catch (FileNotFoundException e) {
-            ui.showError("File not found.");
+            task_list = storage.load();
+        } catch (NyanException e) {
+            ui.showError(e.getMessage());
         }
 
         ui.showWelcome();
@@ -46,7 +47,7 @@ public class NyanChan {
                     }
                     Task t = task_list.get(task_index);
                     t.markAsDone();
-                    Save.write(task_list);
+                    storage.save(task_list);
                     ui.showMarkTask(t);
                 }
 
@@ -58,7 +59,7 @@ public class NyanChan {
                     }
                     Task t = task_list.get(task_index);
                     t.markAsNotDone();
-                    Save.write(task_list);
+                    storage.save(task_list);
                     ui.showUnmarkTask(t);
                 }
 
@@ -70,7 +71,7 @@ public class NyanChan {
                     }
                     Task t = task_list.get(task_index);
                     task_list.remove(task_index);
-                    Save.write(task_list);
+                    storage.save(task_list);
                     ui.showDeleteTask(task_list, t);
                 }
 
@@ -82,7 +83,7 @@ public class NyanChan {
                     }
                     Task task = new Todo(description);
                     task_list.add(task);
-                    Save.write(task_list);
+                    storage.save(task_list);
                     ui.showAddTask(task_list, task);
                 }
 
@@ -97,7 +98,7 @@ public class NyanChan {
                     try {
                         Task task = new Deadline(description, by);
                         task_list.add(task);
-                        Save.write(task_list);
+                        storage.save(task_list);
                         ui.showAddTask(task_list, task);
                     } catch (IncorrectFormatException e) {
                         ui.showError("Invalid date/time format. Use dd/MM/yyyy.\n");
@@ -120,7 +121,7 @@ public class NyanChan {
                     try {
                         Task task = new Event(description, from, to);
                         task_list.add(task);
-                        Save.write(task_list);
+                        storage.save(task_list);
                         ui.showAddTask(task_list, task);
                     } catch (IncorrectFormatException e) {
                         ui.showError("Invalid date/time format for event. Use dd/MM/yyyy.\n");
