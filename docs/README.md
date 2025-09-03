@@ -1,4 +1,4 @@
-# nyanchan.app.NyanChan User Guide
+# nyanchan.app.ChatBot User Guide
 
 // Update the title above to match the actual product name
 

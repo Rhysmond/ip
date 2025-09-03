@@ -4,12 +4,12 @@ import nyanchan.exceptions.NyanException;
 
 import java.util.Scanner;
 
-public class NyanChan {
+public class ChatBot {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
 
-    public NyanChan(String filePath) {
+    public ChatBot(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
@@ -44,6 +44,6 @@ public class NyanChan {
     }
 
     public static void main(String[] args) {
-        new NyanChan("./data/nyanchan.txt").run();
+        new ChatBot("./data/nyanchan.txt").run();
     }
 }
