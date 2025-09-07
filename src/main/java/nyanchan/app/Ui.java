@@ -5,101 +5,63 @@ import nyanchan.tasks.Task;
 import java.util.Scanner;
 
 public class Ui {
-    private final Scanner scanner = new Scanner(System.in);
-
-    // Prints welcome message to user.
-    public void showWelcome() {
-        System.out.println("____________________________________________________________");
-        System.out.println("MEOW! I'm NyanChan!");
-        System.out.println("What can I do for you?");
-        System.out.println("____________________________________________________________");
+    // Return welcome message
+    public String showWelcome() {
+        return "MEOW! I'm NyanChan!\nWhat can I do for you?";
     }
 
-    // Prints line break
-    public void showLine() {
-        System.out.println("____________________________________________________________");
+    // Return error message
+    public String showError(String message) {
+        return "HISS! " + message;
     }
 
-    // Read user input
-    public String readCommand() {
-        return scanner.nextLine();
+    // Return goodbye
+    public String showGoodbye() {
+        return "Purr... Hope to see you again!";
     }
 
-    // Show error message
-    public void showError(String message) {
-        showLine();
-        System.out.println("HISS! " + message);
-        showLine();
-    }
-
-    // Show task list
-    public void showTaskList(TaskList tasks) {
+    // Return task list
+    public String showTaskList(TaskList tasks) {
         if (tasks.isEmpty()) {
-            showLine();
-            System.out.println("Nothing stored yet!\n");
-            showLine();
+            return "Nothing stored yet!";
         } else {
-            showLine();
-            if (tasks.isEmpty()) {
-                System.out.println("Nothing stored yet!\n");
-            } else {
-                System.out.println("Here are the tasks in your list:");
-                for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println(" " + (i + 1) + "." + tasks.get(i));
-                }
+            StringBuilder sb = new StringBuilder();
+            sb.append("Here are the tasks in your list:\n");
+            for (int i = 0; i < tasks.size(); i++) {
+                sb.append(" ").append(i + 1).append(".").append(tasks.get(i)).append("\n");
             }
-            showLine();
+            return sb.toString();
         }
     }
 
-    // Show results for the find command
-    public void showFindResults(TaskList matchedTasks, String keyword) {
-        showLine();
+    // Return find results
+    public String showFindResults(TaskList matchedTasks, String keyword) {
         if (matchedTasks.isEmpty()) {
-            System.out.println("No matching tasks found for: " + keyword);
+            return "No matching tasks found for: " + keyword;
         } else {
-            System.out.println("Here are the matching tasks in your list:");
+            StringBuilder sb = new StringBuilder();
+            sb.append("Here are the matching tasks in your list:\n");
             for (int i = 0; i < matchedTasks.size(); i++) {
-                System.out.println(" " + (i + 1) + "." + matchedTasks.get(i));
+                sb.append(" ").append(i + 1).append(".").append(matchedTasks.get(i)).append("\n");
             }
+            return sb.toString();
         }
-        showLine();
     }
 
-    // Show mark task
-    public void showMarkTask(Task t) {
-        showLine();
-        System.out.println("Meow, I've marked this task as done:\n  " + t + "\n");
-        showLine();
+    // Return messages for add/delete/mark/unmark
+    public String showMarkTask(Task t) {
+        return "Meow, I've marked this task as done:\n  " + t;
     }
 
-    // Show unmark task
-    public void showUnmarkTask(Task t) {
-        showLine();
-        System.out.println("Meow, I've marked this task as not done yet:\n  " + t + "\n");
-        showLine();
+    public String showUnmarkTask(Task t) {
+        return "Meow, I've marked this task as not done yet:\n  " + t;
     }
 
-    // Show delete task
-    public void showDeleteTask(TaskList tasks, Task t) {
-        showLine();
-        System.out.println("Meow, I've removed this task:\n  " + t + "\n"+ "Nyow you have "
-                + tasks.size() + " tasks in the list.\n");
-        showLine();
+    public String showDeleteTask(TaskList tasks, Task t) {
+        return "Meow, I've removed this task:\n  " + t + "\nNyow you have " + tasks.size() + " tasks.";
     }
 
-    // Show todo
-    public void showAddTask(TaskList tasks, Task t) {
-        showLine();
-        System.out.println("Nyan! I've added this task:\n  " + t + "\nNow you have "
-                + tasks.size() + " tasks in the list.\n");
-        showLine();
-    }
-
-    // Say goodbye to users
-    public void showGoodbye() {
-        System.out.println("____________________________________________________________");
-        System.out.println("Purr... Hope to see you again!");
-        System.out.println("____________________________________________________________");
+    public String showAddTask(TaskList tasks, Task t) {
+        return "Nyan! I've added this task:\n  " + t + "\nNow you have " + tasks.size() + " tasks.";
     }
 }

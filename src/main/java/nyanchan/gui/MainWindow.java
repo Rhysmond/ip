@@ -35,6 +35,10 @@ public class MainWindow extends AnchorPane {
     /** Injects the Duke instance */
     public void setDuke(Nyanchan d) {
         nyanchan = d;
+        // Show welcome message on startup
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog("MEOW! I'm NyanChan!\nWhat can I do for you?", dukeImage)
+        );
     }
 
     /**

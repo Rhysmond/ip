@@ -2,48 +2,37 @@ package nyanchan.app;
 
 import nyanchan.exceptions.NyanException;
 
-import java.util.Scanner;
-
 public class ChatBot {
-    private Storage storage;
-    private TaskList taskList;
-    private Ui ui;
+    private final Storage storage;
+    private final TaskList taskList;
+    private final Ui ui;
 
     public ChatBot(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+        TaskList loaded;
         try {
-            taskList = new TaskList(storage.load());
+            loaded = new TaskList(storage.load());
         } catch (NyanException e) {
-            ui.showError(e.getMessage());
-            taskList = new TaskList();
+            // return error string if needed
+            loaded = new TaskList();
         }
+        taskList = loaded;
     }
 
-    public void run() {
-        ui.showWelcome();
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            String userInput = scanner.nextLine().trim();
-
-            try {
-                if (userInput.equals("bye")) {
-                    ui.showGoodbye();
-                    break;
-                }
-                Parser.handleCommand(userInput, taskList, ui, storage);
-            } catch (NyanException e) {
-                ui.showError(e.getMessage() + "\n");
-            } catch (Exception e) {
-                ui.showError("Something went wrong: " + e.getMessage() + "\n");
+    /**
+     * Processes a single user input and returns Nyanchan's response.
+     */
+    public String getResponse(String userInput) {
+        try {
+            if (userInput.equals("bye")) {
+                return ui.showGoodbye();
             }
+            return Parser.handleCommand(userInput, taskList, ui, storage);
+        } catch (NyanException e) {
+            return ui.showError(e.getMessage());
+        } catch (Exception e) {
+            return ui.showError("Something went wrong: " + e.getMessage());
         }
-
-        scanner.close();
-    }
-
-    public static void main(String[] args) {
-        new ChatBot("./data/nyanchan.txt").run();
     }
 }
