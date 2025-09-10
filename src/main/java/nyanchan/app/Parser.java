@@ -79,7 +79,6 @@ public class Parser {
         Task task = new Todo(description);
         taskList.add(task);
         saveTasks(storage, taskList);
-        return ui.showAddTask(taskList, task);
     }
 
     private static String parseTodoDescription(String input) throws NyanException {
