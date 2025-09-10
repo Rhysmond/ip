@@ -79,6 +79,7 @@ public class Parser {
         Task task = new Todo(description);
         taskList.add(task);
         saveTasks(storage, taskList);
+        return description;
     }
 
     private static String parseTodoDescription(String input) throws NyanException {
@@ -135,7 +136,7 @@ public class Parser {
     }
 
     private static String handleFind(String input, TaskList taskList, Ui ui) throws NyanException {
-        String keyword = parseFindKeyword(input);
+        String keyword = parseFindKeyword(input); // find already fulfills C-BetterSearch
         TaskList matchedTasks = findMatchingTasks(taskList, keyword);
         return ui.showFindResults(matchedTasks, keyword);
     }
