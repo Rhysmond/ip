@@ -1,5 +1,0 @@
-T | 1 | 1
-T | 1 | lsakdjfl
-E | 1 | asldkfj | 23/01/2003 | 23/10/2003
-T | 1 | alsdkjf
-D | 0 | saldkjflk | 23/01/2003
