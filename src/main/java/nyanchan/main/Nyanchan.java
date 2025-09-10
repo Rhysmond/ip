@@ -2,7 +2,6 @@ package nyanchan.main;
 
 import nyanchan.app.ChatBot;
 
-// For level 10 branch
 public class Nyanchan {
     public static final String NAME = "Nyanchan";
     private final ChatBot chatbot;

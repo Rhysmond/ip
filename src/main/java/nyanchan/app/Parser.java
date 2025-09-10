@@ -51,6 +51,8 @@ public class Parser {
 
     private static int parseIndex(String input, TaskList taskList) throws NyanException {
         try {
+            String[] tokens = input.split(" ");
+            assert tokens.length == 2 : "Command must include task index";
             int index = Integer.parseInt(input.split(" ")[1]) - 1;
             if (index < 0 || index >= taskList.size()) throw new NyanException("Invalid task number.");
             return index;
@@ -82,6 +84,7 @@ public class Parser {
         if (description.isEmpty()) throw new NyanException("The description of a todo cannot be empty.");
         Task task = new Todo(description);
         taskList.add(task);
+        assert taskList.size() > 0 : "Task list should grow after adding Task.";
         storage.save(taskList.getAll());
         return ui.showAddTask(taskList, task);
     }
@@ -93,6 +96,7 @@ public class Parser {
         try {
             Task task = new Deadline(parts[0].trim(), parts[1].trim());
             taskList.add(task);
+            assert taskList.size() > 0 : "Task list should grow after adding Task.";
             storage.save(taskList.getAll());
             return ui.showAddTask(taskList, task);
         } catch (IncorrectFormatException e) {
@@ -111,6 +115,7 @@ public class Parser {
         try {
             Task task = new Event(description, timeParts[0].trim(), timeParts[1].trim());
             taskList.add(task);
+            assert taskList.size() > 0 : "Task list should grow after adding Task.";
             storage.save(taskList.getAll());
             return ui.showAddTask(taskList, task);
         } catch (IncorrectFormatException e) {
