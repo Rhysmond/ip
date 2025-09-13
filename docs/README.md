@@ -1,30 +1,100 @@
-# nyanchan.app.ChatBot User Guide
+# NyanChan ChatBot User Guide
 
-// Update the title above to match the actual product name
+![NyanChan Screenshot](Ui.png)
 
-// Product screenshot goes here
+Welcome to **NyanChan**, your friendly Java-based task management chatbot! NyanChan helps you manage your tasks efficiently via simple text commands.
 
-// Product intro goes here
+---
 
-## Adding deadlines
+## Getting Started
 
-// Describe the action and its outcome.
+1. Run the chatbot using the provided JAR file:
 
-// Give examples of usage
-
-Example: `keyword (optional arguments)`
-
-// A description of the expected outcome goes here
-
+```bash
+java -jar nyanchan.jar
 ```
-expected output
+2. Type commands in the input field to interact with NyanChan.
+
+3. All commands are case-insensitive.
+
+## Supported Commands
+## Adding Tasks
+
+NyanChan supports Todo, Deadline, and Event tasks.
+
+## Todo
+
+Adds a simple task without a date/time.
+
+Usage:
+```bash
+todo <task description>
 ```
 
-## Feature ABC
+Example:
+```bash
+todo Buy groceries
+```
 
-// Feature details
+## Deadline
 
+Adds a task with a due date.
 
-## Feature XYZ
+Usage:
+```bash
+deadline <task description> /by <dd/MM/yyyy>
+```
 
-// Feature details
+Example:
+```bash
+deadline Submit report /by 20/09/2025
+```
+
+## Event
+
+Adds a task that occurs over a specific time range.
+
+Usage:
+```bash
+event <task description> /from <start date> /to <end date>
+```
+
+Example:
+```bash
+event Team meeting /from 21/09/2025 /to 21/09/2025
+```
+
+## Managing Tasks
+
+## Mark/Unmark
+Mark a task as done or not done.
+
+Usage:
+```bash
+mark <task number>
+unmark <task number>
+```
+
+## Delete
+Remove a task from the list.
+
+Usage:
+```bash
+delete <task number>
+```
+
+## List
+Shows all current tasks.
+
+Usage:
+```bash
+list
+```
+
+## Find
+Search for tasks by keyword.
+
+Usage:
+```bash
+find <keyword>
+```
