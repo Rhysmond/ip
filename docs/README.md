@@ -1,4 +1,4 @@
-# NyanChan ChatBot User Gui
+# NyanChan ChatBot User Guide
 
 ![NyanChan Screenshot](Ui.png)
 
