@@ -1,4 +1,4 @@
-# NyanChan ChatBot User Gu
+# NyanChan ChatBot User Gui
 
 ![NyanChan Screenshot](Ui.png)
 
